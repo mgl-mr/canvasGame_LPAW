@@ -3,19 +3,15 @@ import { loadImage } from "./loaderAssets";
 
 export default class Hero extends Circle {
 
-	constructor(x, y, size, speed = 10, width, height, imgUrl, FRAMES) {
-		super(x, y, size, speed);
-    this.imgUrl = imgUrl;
+	constructor(x, y, size, speed = 10, width, height, img, FRAMES) {
+		super(x, y, size, speed); 
     
-    loadImage(imgUrl)
-		.then(img=>{
-			this.img = img;
-			this.cellWidth = img.naturalWidth/ this.totalSpritesX + 3.5;
-			this.cellHeight = img.naturalHeight / this.totalSpritesY;
-		});
-
     this.totalSpritesX = 3;
     this.totalSpritesY = 4;
+ 
+		this.img = img;
+		this.cellWidth = img.naturalWidth/ this.totalSpritesX + 3.5;
+		this.cellHeight = img.naturalHeight / this.totalSpritesY;
 
     this.spriteSpeed = 1;
 
@@ -35,7 +31,6 @@ export default class Hero extends Circle {
 
 	draw(ctx) {
     this.setCellY();
-
     ctx.drawImage(
 			this.img,
 			this.cellX * this.cellWidth,

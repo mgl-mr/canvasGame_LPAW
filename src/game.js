@@ -9,7 +9,7 @@ import { keyPress, key } from "./keyboard";
 let CTX;
 let CANVAS;
 const FRAMES = 60;
-const qtdEnemies =15;
+const qtdEnemies = 20;
 let points = 0;
 
 let enemies;
@@ -47,7 +47,7 @@ const init = async () => {
   loaded = false;
 
   enemies = Array.from({length:qtdEnemies});
-  hero = new Hero(300, 100, 20, 4, 41, 44.5, 'img/goblin.png', FRAMES);
+  hero = new Hero(300, 100, 20, 4, 41, 44.5, heroSprite, FRAMES);
   orange = new Coin((Math.random()*550) + 15,( Math.random()*350) + 15, 15, 0, coinImage);
   score = new Score(`Score: ${points}`, 600);
 
@@ -108,25 +108,24 @@ const start = () => {
 const loop = () => {
 	setTimeout(() => {
 		CTX.drawImage(background, 0, 0, CANVAS.width, CANVAS.height);
-  
     score.draw(CTX);
 
-		hero.move(boundaries, key);
-		hero.draw(CTX);
-
 		enemies.forEach(e =>{
-			e.move(boundaries, 0) 
+      e.move(boundaries, 0) 
 			e.draw(CTX)
 			gameover = !gameover ? e.colide(hero) : true;
 		}); 
-
+    
+    hero.move(boundaries, key);
+    hero.draw(CTX);
+    
     if(orange.colide(hero)) {
-      scoreSound.load();
+      scoreSound.currentTime = 0;
       scoreSound.play();
 
       orange.x = (Math.random()*(CANVAS.width - orange.size));
       orange.y = (Math.random()*(CANVAS.height - orange.size));
-      
+
       points ++;
       score.text = `Score: ${points}`;
     }
