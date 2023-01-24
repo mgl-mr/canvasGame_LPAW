@@ -9,7 +9,7 @@ import { keyPress, key } from "./keyboard";
 let CTX;
 let CANVAS;
 const FRAMES = 60;
-const qtdEnemies = 1;
+const qtdEnemies = 30;
 let points = 0;
 
 let enemies;
