@@ -9,7 +9,7 @@ import { keyPress, key } from "./keyboard";
 let CTX;
 let CANVAS;
 const FRAMES = 60;
-const qtdEnemies = 20;
+const qtdEnemies = 1;
 let points = 0;
 
 let enemies;
@@ -111,8 +111,8 @@ const loop = () => {
     score.draw(CTX);
 
 		enemies.forEach(e =>{
-      e.move(boundaries, 0) 
-			e.draw(CTX)
+      e.move(boundaries, 0); 
+			e.draw(CTX);
 			gameover = !gameover ? e.colide(hero) : true;
 		}); 
     

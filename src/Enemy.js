@@ -15,15 +15,12 @@ export default class Enemy extends Circle{
     this.animeSprite(frames);
 	}
   
-
 	move(limits){
 		this.y +=this.speed;
 		this.limits(limits);
 	}
 
   draw(ctx) {
-    
-
     ctx.drawImage(
 			this.img,
 			this.cellX * this.cellWidth,
@@ -44,15 +41,9 @@ export default class Enemy extends Circle{
 	}
 
 	limits(limits){
-    const colors = [0,1,2,3,4,5,6,7,8,9,'a','b','c','d','e','f'];
-
 		if(this.y - this.size > limits.height ){
 			this.y = -2*this.size;
 			this.x = Math.random()*limits.width;
-      this.color = '#' 
-        +colors[Math.floor(Math.random() * (colors.length - 1))]
-        +colors[Math.floor(Math.random() * (colors.length - 1))]
-        +colors[Math.floor(Math.random() * (colors.length - 1))]; 
 		}
 	}
 }
